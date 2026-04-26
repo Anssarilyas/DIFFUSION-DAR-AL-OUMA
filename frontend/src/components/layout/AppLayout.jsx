@@ -12,6 +12,7 @@ export function PublicLayout() {
   const navItems = [
     { to: '/', label: 'Accueil' },
     { to: '/books', label: 'Manuels' },
+    { to: '/plateforme', label: 'Plateforme' },
     { to: '/architecture-tnd', label: 'Architecture TND' },
     { to: '/requests', label: 'Réunions' },
   ]
@@ -103,6 +104,9 @@ export function PublicLayout() {
           <div className="flex flex-wrap gap-3">
             <NavLink to="/books">
               <Button variant="secondary">Manuels</Button>
+            </NavLink>
+            <NavLink to="/plateforme">
+              <Button variant="secondary">Plateforme</Button>
             </NavLink>
             <NavLink to="/architecture-tnd">
               <Button variant="secondary">Architecture TND</Button>

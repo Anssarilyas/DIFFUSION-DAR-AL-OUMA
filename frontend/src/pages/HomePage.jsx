@@ -13,6 +13,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import BookCard from '../components/books/BookCard.jsx'
 import { Badge, Button, SectionHeading } from '../components/ui/index.jsx'
 import { useAppContext } from '../context/AppContext.jsx'
+import { platformSpaces } from '../data/mockData'
 
 const levelLinks = [
   'Maternelle',
@@ -100,6 +101,11 @@ function HomePage() {
                 Explorer le catalogue
               </Button>
             </Link>
+            <Link to="/plateforme">
+              <Button variant="secondary" icon={Layers3}>
+                Espaces plateforme
+              </Button>
+            </Link>
             <Link to="/architecture-tnd">
               <Button variant="secondary" icon={ArrowRight}>
                 Architecture TND
@@ -143,6 +149,40 @@ function HomePage() {
             </p>
           </div>
         ))}
+      </section>
+
+      <section className="border-y border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-slate-900">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Plateforme"
+            title="6 espaces connectés au manuel"
+            description="Élève, enseignant, parent, formation, inclusion TND et administration éditoriale dans une même logique de ressources."
+            action={
+              <Link to="/plateforme">
+                <Button variant="secondary">Voir la cartographie</Button>
+              </Link>
+            }
+          />
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {platformSpaces.map((space) => (
+              <Link
+                key={space.id}
+                to={`/plateforme#${space.id}`}
+                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-pink-200 hover:bg-pink-50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+              >
+                <Badge className="bg-pink-100 text-pink-700 dark:bg-pink-500/15 dark:text-pink-200">
+                  {space.number}
+                </Badge>
+                <h3 className="mt-4 font-display text-xl font-semibold text-slate-950 dark:text-white">
+                  {space.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                  {space.items.slice(0, 3).join(' · ')}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

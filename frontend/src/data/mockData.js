@@ -251,6 +251,116 @@ export const architectureSections = [
   },
 ]
 
+export const platformSpaces = [
+  {
+    id: 'eleve',
+    number: '1',
+    title: 'Espace Élève',
+    description:
+      'Un espace simple pour consulter les manuels, réviser et suivre les activités.',
+    items: [
+      'Mes manuels',
+      'Mes exercices',
+      'Mes vidéos',
+      'Mes quiz',
+      'Mes révisions',
+      'Mes progrès',
+    ],
+  },
+  {
+    id: 'enseignant',
+    number: '2',
+    title: 'Espace Enseignant',
+    description:
+      'Un espace métier pour préparer, projeter, différencier et suivre les élèves.',
+    items: [
+      'Guides pédagogiques',
+      'Fiches de séance',
+      'Exercices différenciés',
+      'Évaluations',
+      'Ressources projetables',
+      'Adaptations inclusives',
+      'Suivi des élèves',
+    ],
+  },
+  {
+    id: 'parent',
+    number: '3',
+    title: 'Espace Parent',
+    description:
+      'Un espace d’accompagnement pour comprendre le programme et aider à la maison.',
+    items: [
+      'Comprendre le programme',
+      'Aider son enfant',
+      'Difficultés fréquentes',
+      'Vidéos courtes',
+      'Guides familiaux',
+      'Communication école-famille',
+    ],
+  },
+  {
+    id: 'formation',
+    number: '4',
+    title: 'Espace Formation',
+    description:
+      'Un parcours de formation pour les enseignants, parents et directions.',
+    items: [
+      'Formations enseignants',
+      'Formations parents',
+      'Formations directions',
+      'Modules TND',
+      'Quiz de validation',
+      'Attestations',
+    ],
+  },
+  {
+    id: 'inclusion-tnd',
+    number: '5',
+    title: 'Espace Inclusion / TND',
+    description:
+      'Des ressources accessibles pour adapter les usages pédagogiques.',
+    items: [
+      'Dyslexie',
+      'TDL',
+      'TDAH',
+      'TSA',
+      'Difficultés attentionnelles',
+      'Adaptations pédagogiques',
+      'Ressources accessibles',
+    ],
+  },
+  {
+    id: 'administration-editeur',
+    number: '6',
+    title: 'Espace Administration / Éditeur',
+    description:
+      'Les outils de pilotage pour les contenus, utilisateurs, validations et usages.',
+    items: [
+      'Gestion des contenus',
+      'Gestion des utilisateurs',
+      'Statistiques d’usage',
+      'Validation éditoriale',
+      'Validation pédagogique',
+      'Gestion commerciale',
+    ],
+  },
+]
+
+export const platformVideos = [
+  {
+    id: 'klsD64oltfQ',
+    title: 'Vidéo plateforme 1',
+    url: 'https://www.youtube.com/watch?v=klsD64oltfQ',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/klsD64oltfQ',
+  },
+  {
+    id: 'Bb9Vhb8RHB8',
+    title: 'Vidéo plateforme 2',
+    url: 'https://www.youtube.com/watch?v=Bb9Vhb8RHB8',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/Bb9Vhb8RHB8',
+  },
+]
+
 export const seedUsers = [
   {
     id: 'user-admin',
