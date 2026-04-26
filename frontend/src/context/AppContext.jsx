@@ -13,9 +13,31 @@ import { seedState } from '../data/mockData'
 import { createId, statsFromState } from '../utils/helpers'
 
 const AppContext = createContext(null)
-const STORAGE_KEY = 'ktoba-state-v1'
+const STORAGE_KEY = 'ktoba-state-v2'
 const TOKEN_KEY = 'ktoba-token'
 const USE_MOCK_API = import.meta.env.VITE_USE_MOCK_API !== 'false'
+
+const mergeCollectionById = (storedItems = [], seedItems = []) => {
+  const storedIds = new Set(storedItems.map((item) => item.id))
+
+  return [
+    ...seedItems.filter((item) => !storedIds.has(item.id)),
+    ...storedItems,
+  ]
+}
+
+const mergeList = (storedItems = [], seedItems = []) =>
+  Array.from(new Set([...seedItems, ...storedItems].filter(Boolean)))
+
+const mergeStoredState = (storedState = {}) => ({
+  ...seedState,
+  ...storedState,
+  users: mergeCollectionById(storedState.users, seedState.users),
+  books: mergeCollectionById(storedState.books, seedState.books),
+  requests: storedState.requests || seedState.requests,
+  categories: mergeList(storedState.categories, seedState.categories),
+  levels: mergeList(storedState.levels, seedState.levels),
+})
 
 const loadState = () => {
   if (typeof window === 'undefined') {
@@ -29,7 +51,7 @@ const loadState = () => {
   }
 
   try {
-    return JSON.parse(raw)
+    return mergeStoredState(JSON.parse(raw))
   } catch {
     return seedState
   }
@@ -63,24 +85,6 @@ export function AppProvider({ children }) {
   const [loading, setLoading] = useState(false)
   const booted = useRef(false)
 
-  useEffect(() => {
-    document.body.classList.toggle('dark', state.theme === 'dark')
-  }, [state.theme])
-
-  useEffect(() => {
-    if (!USE_MOCK_API) {
-      return
-    }
-
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-
-    if (state.token) {
-      window.localStorage.setItem(TOKEN_KEY, state.token)
-    } else {
-      window.localStorage.removeItem(TOKEN_KEY)
-    }
-  }, [state])
-
   const notify = (toast) => {
     const id = createId('toast')
     const nextToast = { id, tone: 'info', ...toast }
@@ -90,6 +94,29 @@ export function AppProvider({ children }) {
       setToasts((current) => current.filter((item) => item.id !== id))
     }, 3800)
   }
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', state.theme === 'dark')
+  }, [state.theme])
+
+  useEffect(() => {
+    if (!USE_MOCK_API) {
+      return
+    }
+
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+
+      if (state.token) {
+        window.localStorage.setItem(TOKEN_KEY, state.token)
+      } else {
+        window.localStorage.removeItem(TOKEN_KEY)
+      }
+    } catch {
+      window.localStorage.removeItem(STORAGE_KEY)
+      console.warn('Le stockage local est insuffisant pour conserver cet état.')
+    }
+  }, [state])
 
   const hydrateFromApi = useEffectEvent(async () => {
     setLoading(true)

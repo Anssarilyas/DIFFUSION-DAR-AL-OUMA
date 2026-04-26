@@ -6,9 +6,11 @@ import BooksPage from './pages/BooksPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
+import ManualReaderPage from './pages/ManualReaderPage.jsx'
 import MeetingRoomPage from './pages/MeetingRoomPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import RequestsPage from './pages/RequestsPage.jsx'
+import TndArchitecturePage from './pages/TndArchitecturePage.jsx'
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route element={<PublicLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/books" element={<BooksPage />} />
+          <Route path="/architecture-tnd" element={<TndArchitecturePage />} />
+          <Route path="/books/:bookId/read" element={<ManualReaderPage />} />
           <Route path="/books/:bookId" element={<BookDetailsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />

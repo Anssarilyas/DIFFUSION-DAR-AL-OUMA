@@ -1,0 +1,13 @@
+# Backend generated files
+backend/vendor/
+backend/storage/
+backend/bootstrap/cache/
+
+# Environment files
+.env
+backend/.env
+frontend/.env
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

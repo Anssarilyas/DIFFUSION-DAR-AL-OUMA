@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import {
   BarChart3,
   BookOpen,
+  Download,
+  FileText,
   FolderKanban,
   ImagePlus,
   LayoutDashboard,
@@ -25,24 +27,25 @@ import {
   Textarea,
 } from '../components/ui/index.jsx'
 import { useAppContext } from '../context/AppContext.jsx'
+import { audienceOptions, classOptions, publisherOptions } from '../data/mockData'
 import { formatDate, requestTone, roleLabel } from '../utils/helpers'
 
 const dashboardSections = {
   admin: [
     { key: 'overview', label: 'Stats', icon: LayoutDashboard },
-    { key: 'books', label: 'Books', icon: BookOpen },
-    { key: 'users', label: 'Users', icon: Users2 },
-    { key: 'requests', label: 'Requests', icon: ShieldCheck },
-    { key: 'categories', label: 'Categories', icon: FolderKanban },
+    { key: 'books', label: 'Manuels', icon: BookOpen },
+    { key: 'users', label: 'Utilisateurs', icon: Users2 },
+    { key: 'requests', label: 'Demandes', icon: ShieldCheck },
+    { key: 'categories', label: 'Référentiels', icon: FolderKanban },
   ],
   utilisateur: [
-    { key: 'overview', label: 'Books', icon: BookOpen },
-    { key: 'requests', label: 'My Requests', icon: ShieldCheck },
-    { key: 'profile', label: 'Profile', icon: UserCog },
+    { key: 'overview', label: 'Manuels', icon: BookOpen },
+    { key: 'requests', label: 'Mes demandes', icon: ShieldCheck },
+    { key: 'profile', label: 'Profil', icon: UserCog },
   ],
   formateur: [
-    { key: 'overview', label: 'My Books', icon: BookOpen },
-    { key: 'requests', label: 'Requests', icon: ShieldCheck },
+    { key: 'overview', label: 'Mes manuels', icon: BookOpen },
+    { key: 'requests', label: 'Demandes', icon: ShieldCheck },
   ],
 }
 
@@ -51,8 +54,15 @@ const initialBookForm = {
   description: '',
   imageUrl: '',
   pdfUrl: '',
-  subject: 'Math',
-  level: 'Lycée',
+  subject: 'Français',
+  level: 'Collège',
+  classLevel: '5e',
+  audience: 'Enseignant',
+  publisher: 'Dar Al Ouma',
+  isNew: false,
+  pages: 0,
+  readAccess: 'all',
+  allowedPages: '',
 }
 
 const initialFormateurForm = {
@@ -62,9 +72,11 @@ const initialFormateurForm = {
   phone: '',
   password: 'teacher123',
   role: 'formateur',
-  subject: 'Math',
-  level: 'LycÃ©e',
+  subject: 'Français',
+  level: 'Collège',
 }
+
+const guidePdfPath = '/downloads/Guide_Utilisateur_DIFFUSION_DAR_AL_OUMA.pdf'
 
 const readFileAsDataUrl = (file) =>
   new Promise((resolve, reject) => {
@@ -99,6 +111,7 @@ function DashboardPage() {
   const [bookForm, setBookForm] = useState(initialBookForm)
   const [bookModalOpen, setBookModalOpen] = useState(false)
   const [bookImageName, setBookImageName] = useState('')
+  const [bookPdfName, setBookPdfName] = useState('')
   const [deleteCandidate, setDeleteCandidate] = useState(null)
   const [formateurModalOpen, setFormateurModalOpen] = useState(false)
   const [formateurForm, setFormateurForm] = useState(initialFormateurForm)
@@ -142,16 +155,28 @@ function DashboardPage() {
   const startCreateBook = () => {
     setBookForm({
       ...initialBookForm,
-      subject: state.categories[0] || 'Math',
-      level: state.levels[0] || 'Primaire',
+      subject: state.categories[0] || 'Français',
+      level: state.levels[0] || 'Collège',
+      classLevel: 'Tous',
+      audience: 'Enseignant',
+      publisher: 'Dar Al Ouma',
+      isNew: false,
     })
     setBookImageName('')
+    setBookPdfName('')
     setBookModalOpen(true)
   }
 
   const startEditBook = (book) => {
-    setBookForm(book)
+    setBookForm({
+      ...initialBookForm,
+      ...book,
+      pages: book.pages || 0,
+      readAccess: book.readAccess || 'all',
+      allowedPages: book.allowedPages || '',
+    })
     setBookImageName('Image actuelle')
+    setBookPdfName(book.pdfUrl ? 'PDF actuel' : '')
     setBookModalOpen(true)
   }
 
@@ -171,19 +196,42 @@ function DashboardPage() {
     setBookImageName(file.name)
   }
 
+  const handleBookPdfChange = async (event) => {
+    const [file] = event.target.files || []
+
+    if (!file) {
+      return
+    }
+
+    const pdfUrl = await readFileAsDataUrl(file)
+
+    setBookForm((current) => ({
+      ...current,
+      pdfUrl,
+    }))
+    setBookPdfName(file.name)
+  }
+
   const submitBookForm = (event) => {
     event.preventDefault()
-    saveBook(bookForm)
+    saveBook({
+      ...bookForm,
+      pages: Number(bookForm.pages) || 0,
+      readAccess: bookForm.readAccess || 'all',
+      allowedPages:
+        bookForm.readAccess === 'pages' ? (bookForm.allowedPages || '').trim() : '',
+    })
     setBookModalOpen(false)
     setBookForm(initialBookForm)
     setBookImageName('')
+    setBookPdfName('')
   }
 
   const overviewCards = [
-    { label: 'Users', value: stats.totalUsers, icon: Users2 },
-    { label: 'Books', value: stats.totalBooks, icon: BookOpen },
-    { label: 'Requests', value: stats.totalRequests, icon: ShieldCheck },
-    { label: 'Pending', value: stats.pendingRequests, icon: BarChart3 },
+    { label: 'Utilisateurs', value: stats.totalUsers, icon: Users2 },
+    { label: 'Manuels', value: stats.totalBooks, icon: BookOpen },
+    { label: 'Demandes', value: stats.totalRequests, icon: ShieldCheck },
+    { label: 'En attente', value: stats.pendingRequests, icon: BarChart3 },
   ]
 
   const formateurs = state.users.filter((user) => user.role === 'formateur')
@@ -195,8 +243,8 @@ function DashboardPage() {
     setFormateurModalOpen(false)
     setFormateurForm({
       ...initialFormateurForm,
-      subject: state.categories[0] || 'Math',
-      level: state.levels[0] || 'Primaire',
+      subject: state.categories[0] || 'Français',
+      level: state.levels[0] || 'Collège',
     })
   }
 
@@ -208,7 +256,7 @@ function DashboardPage() {
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.28em] text-amber-500">
-                  Super Admin Control
+                  Pilotage éditorial
                 </p>
                 <h3 className="mt-3 font-display text-3xl font-semibold text-slate-950 dark:text-white">
                   Gestion complète des comptes formateurs
@@ -225,6 +273,11 @@ function DashboardPage() {
                 <Badge className="bg-sky-100 text-sky-700 dark:bg-sky-500/10 dark:text-sky-200">
                   {utilisateurs.length} utilisateurs
                 </Badge>
+                <a href={guidePdfPath} download>
+                  <Button variant="accent" icon={Download}>
+                    Guide PDF
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -324,8 +377,8 @@ function DashboardPage() {
                 onClick={() => {
                   setFormateurForm({
                     ...initialFormateurForm,
-                    subject: state.categories[0] || 'Math',
-                    level: state.levels[0] || 'Primaire',
+                    subject: state.categories[0] || 'Français',
+                    level: state.levels[0] || 'Collège',
                   })
                   setFormateurModalOpen(true)
                 }}
@@ -672,9 +725,9 @@ function DashboardPage() {
   }
 
   const roleTitle = {
-    admin: 'Admin dashboard',
-    utilisateur: 'User dashboard',
-    formateur: 'Formateur dashboard',
+    admin: 'Dashboard admin',
+    utilisateur: 'Dashboard utilisateur',
+    formateur: 'Dashboard formateur',
   }
 
   return (
@@ -786,6 +839,59 @@ function DashboardPage() {
               </option>
             ))}
           </Select>
+          <Select
+            label="Classe"
+            value={bookForm.classLevel || 'Tous'}
+            onChange={(event) =>
+              setBookForm((current) => ({
+                ...current,
+                classLevel: event.target.value,
+              }))
+            }
+          >
+            {classOptions.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </Select>
+          <Select
+            label="Public"
+            value={bookForm.audience || 'Enseignant'}
+            onChange={(event) =>
+              setBookForm((current) => ({ ...current, audience: event.target.value }))
+            }
+          >
+            {audienceOptions.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </Select>
+          <Select
+            label="Éditeur"
+            value={bookForm.publisher || 'Dar Al Ouma'}
+            onChange={(event) =>
+              setBookForm((current) => ({ ...current, publisher: event.target.value }))
+            }
+          >
+            {publisherOptions.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </Select>
+          <label className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+            <input
+              type="checkbox"
+              checked={Boolean(bookForm.isNew)}
+              onChange={(event) =>
+                setBookForm((current) => ({ ...current, isNew: event.target.checked }))
+              }
+              className="h-4 w-4 accent-pink-500"
+            />
+            Nouveauté
+          </label>
           <label className="block space-y-2">
             <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">
               Image du livre
@@ -815,14 +921,77 @@ function DashboardPage() {
             </div>
           </label>
           <Input
-            label="PDF URL"
-            value={bookForm.pdfUrl || ''}
+            label="Lien PDF externe ou import manuel"
+            value={bookForm.pdfUrl?.startsWith('data:') ? '' : bookForm.pdfUrl || ''}
             onChange={(event) =>
               setBookForm((current) => ({ ...current, pdfUrl: event.target.value }))
             }
             hint="Laisse vide si aucun PDF n’est encore disponible."
             className="md:col-span-2"
           />
+          <label className="block space-y-2 md:col-span-2">
+            <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+              Importer le manuel PDF
+            </span>
+            <div className="rounded-[24px] border border-dashed border-pink-200 bg-pink-50/70 p-4 dark:border-pink-400/20 dark:bg-pink-500/10">
+              <label className="flex cursor-pointer items-center justify-center gap-3 rounded-2xl bg-pink-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-pink-700">
+                <FileText size={18} />
+                Choisir un PDF
+                <input
+                  type="file"
+                  accept="application/pdf,.pdf"
+                  className="hidden"
+                  onChange={handleBookPdfChange}
+                />
+              </label>
+              <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+                {bookPdfName ||
+                  'Le PDF importé sera affiché dans le lecteur manuel intégré.'}
+              </p>
+            </div>
+          </label>
+          <Input
+            label="Nombre de pages"
+            type="number"
+            min="0"
+            value={bookForm.pages || ''}
+            onChange={(event) =>
+              setBookForm((current) => ({
+                ...current,
+                pages: event.target.value,
+              }))
+            }
+            hint="Utilisé pour limiter le lecteur et afficher le total."
+          />
+          <Select
+            label="Accès lecture PDF"
+            value={bookForm.readAccess || 'all'}
+            onChange={(event) =>
+              setBookForm((current) => ({
+                ...current,
+                readAccess: event.target.value,
+                allowedPages: event.target.value === 'all' ? '' : current.allowedPages,
+              }))
+            }
+          >
+            <option value="all">PDF complet</option>
+            <option value="pages">Pages sélectionnées</option>
+          </Select>
+          <div className="md:col-span-2">
+            <Input
+              label="Pages autorisées"
+              value={bookForm.allowedPages || ''}
+              onChange={(event) =>
+                setBookForm((current) => ({
+                  ...current,
+                  allowedPages: event.target.value,
+                }))
+              }
+              placeholder="Exemple : 1-5, 8, 12-14"
+              disabled={(bookForm.readAccess || 'all') === 'all'}
+              hint="À remplir seulement si l'accès est limité à certaines pages."
+            />
+          </div>
           <Textarea
             label="Description"
             value={bookForm.description}

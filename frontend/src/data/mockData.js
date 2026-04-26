@@ -1,45 +1,45 @@
 export const subjectThemes = {
-  Math: {
-    gradient: 'from-sky-500 via-blue-500 to-indigo-500',
+  'Mathématiques': {
+    gradient: 'from-sky-500 via-cyan-500 to-blue-500',
     soft: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-200',
     border: 'border-sky-200/70 dark:border-sky-400/20',
     accent: 'text-sky-500',
     glow: 'shadow-[0_24px_60px_-34px_rgba(14,165,233,0.9)]',
   },
-  PC: {
-    gradient: 'from-orange-500 via-red-500 to-rose-500',
-    soft: 'bg-orange-100 text-orange-700 dark:bg-orange-500/15 dark:text-orange-200',
-    border: 'border-orange-200/70 dark:border-orange-400/20',
-    accent: 'text-orange-500',
-    glow: 'shadow-[0_24px_60px_-34px_rgba(249,115,22,0.95)]',
-  },
-  SVT: {
-    gradient: 'from-emerald-500 via-green-500 to-lime-500',
-    soft: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-200',
-    border: 'border-emerald-200/70 dark:border-emerald-400/20',
-    accent: 'text-emerald-500',
-    glow: 'shadow-[0_24px_60px_-34px_rgba(16,185,129,0.95)]',
-  },
   Français: {
-    gradient: 'from-pink-500 via-rose-500 to-fuchsia-500',
+    gradient: 'from-pink-500 via-rose-500 to-red-400',
     soft: 'bg-pink-100 text-pink-700 dark:bg-pink-500/15 dark:text-pink-200',
     border: 'border-pink-200/70 dark:border-pink-400/20',
     accent: 'text-pink-500',
     glow: 'shadow-[0_24px_60px_-34px_rgba(236,72,153,0.95)]',
   },
-  English: {
-    gradient: 'from-cyan-500 via-sky-500 to-teal-500',
-    soft: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-500/15 dark:text-cyan-200',
-    border: 'border-cyan-200/70 dark:border-cyan-400/20',
-    accent: 'text-cyan-500',
-    glow: 'shadow-[0_24px_60px_-34px_rgba(6,182,212,0.95)]',
+  Sciences: {
+    gradient: 'from-emerald-500 via-teal-500 to-lime-500',
+    soft: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-200',
+    border: 'border-emerald-200/70 dark:border-emerald-400/20',
+    accent: 'text-emerald-500',
+    glow: 'shadow-[0_24px_60px_-34px_rgba(16,185,129,0.95)]',
   },
-  Arabic: {
-    gradient: 'from-amber-400 via-yellow-500 to-orange-500',
-    soft: 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-200',
+  Langues: {
+    gradient: 'from-violet-500 via-indigo-500 to-sky-500',
+    soft: 'bg-violet-100 text-violet-700 dark:bg-violet-500/15 dark:text-violet-200',
+    border: 'border-violet-200/70 dark:border-violet-400/20',
+    accent: 'text-violet-500',
+    glow: 'shadow-[0_24px_60px_-34px_rgba(124,58,237,0.85)]',
+  },
+  TND: {
+    gradient: 'from-amber-400 via-orange-500 to-rose-500',
+    soft: 'bg-amber-100 text-amber-800 dark:bg-amber-500/15 dark:text-amber-200',
     border: 'border-amber-200/70 dark:border-amber-400/20',
     accent: 'text-amber-500',
     glow: 'shadow-[0_24px_60px_-34px_rgba(245,158,11,0.95)]',
+  },
+  Pédagogie: {
+    gradient: 'from-slate-700 via-slate-600 to-zinc-500',
+    soft: 'bg-slate-100 text-slate-700 dark:bg-slate-500/15 dark:text-slate-200',
+    border: 'border-slate-200/70 dark:border-slate-400/20',
+    accent: 'text-slate-500',
+    glow: 'shadow-[0_24px_60px_-34px_rgba(71,85,105,0.95)]',
   },
   default: {
     gradient: 'from-slate-500 via-slate-600 to-slate-700',
@@ -50,8 +50,206 @@ export const subjectThemes = {
   },
 }
 
-export const levelOptions = ['Primaire', 'Collège', 'Lycée']
-export const seedCategories = ['Math', 'PC', 'SVT', 'Français', 'English', 'Arabic']
+export const levelOptions = [
+  'Maternelle',
+  'Élémentaire',
+  'Collège',
+  'Lycée',
+  'Formation TND',
+  'Parents',
+]
+
+export const classOptions = [
+  'Tous',
+  'Petite section',
+  'CP',
+  'CE1',
+  'CE2',
+  'CM1',
+  'CM2',
+  '6e',
+  '5e',
+  '4e',
+  '3e',
+  '2de',
+  '1re',
+  'Terminale',
+]
+
+export const audienceOptions = ['Élève', 'Enseignant', 'Parent']
+export const publisherOptions = ['Dar Al Ouma', 'Partenaire numérique']
+export const seedCategories = [
+  'Français',
+  'Mathématiques',
+  'Sciences',
+  'Langues',
+  'TND',
+  'Pédagogie',
+]
+
+export const architectureSections = [
+  {
+    id: 'principe-structurant',
+    number: '1',
+    title: 'Principe structurant',
+    lead:
+      'Le système doit être conçu comme une plateforme d’accompagnement des manuels scolaires, enrichie par des modules de formation TND et des outils numériques de suivi.',
+    points: ['Le manuel devient l’unité centrale.', 'Le numérique prolonge le manuel sans le remplacer.'],
+  },
+  {
+    id: 'architecture-fonctionnelle',
+    number: '2',
+    title: 'Architecture fonctionnelle corrigée',
+    lead: 'Le noyau central est un manuel scolaire instrumenté.',
+    diagram: [
+      'MANUEL SCOLAIRE (version éditée)',
+      'INDEXATION NUMÉRIQUE',
+      'chapitres',
+      'compétences',
+      'activités',
+      'LIENS VERS',
+      'capsules formation',
+      'activités numériques',
+      'guides enseignants / parents',
+    ],
+    points: [
+      'Chaque chapitre peut pointer vers des ressources numériques.',
+      'Chaque activité peut être reliée à une compétence et à une aide contextualisée.',
+      'Les guides enseignants et parents restent attachés au manuel.',
+    ],
+  },
+  {
+    id: 'trois-couches',
+    number: '3',
+    title: 'Trois couches intégrées',
+    lead: 'La plateforme combine édition, formation et numérique dans une même logique.',
+    groups: [
+      {
+        title: 'A. Couche éditoriale',
+        items: ['Contenus du manuel', 'Progression pédagogique officielle', 'Conformité programmes'],
+      },
+      {
+        title: 'B. Couche formation TND',
+        items: [
+          'Modules enseignants : phonologie, attention, fonctions exécutives',
+          'Modules parents : accompagner à la maison',
+          'Scénarios d’usage du manuel',
+        ],
+      },
+      {
+        title: 'C. Couche numérique',
+        items: ['Accès aux contenus', 'Activités interactives', 'Suivi des usages non diagnostique'],
+      },
+    ],
+  },
+  {
+    id: 'flux-terrain',
+    number: '4',
+    title: 'Flux d’usage réel',
+    lead: 'Le terrain reste simple : classe, maison, plateforme.',
+    groups: [
+      {
+        title: 'En classe',
+        items: ['L’enseignant utilise le manuel.', 'Il active la ressource numérique associée.'],
+      },
+      {
+        title: 'À la maison',
+        items: ['Le parent consulte une capsule explicative.', 'Il accompagne l’activité du manuel.'],
+      },
+      {
+        title: 'Plateforme',
+        items: ['Elle enregistre l’usage.', 'Elle fournit un feedback simple.'],
+      },
+    ],
+  },
+  {
+    id: 'structure-technique',
+    number: '5',
+    title: 'Structure technique adaptée',
+    lead: 'La technique suit la logique du manuel et des usages courts.',
+    groups: [
+      {
+        title: 'Frontend',
+        items: ['Accès par manuel, QR code ou chapitre', 'Interface simple enseignant / parent'],
+      },
+      {
+        title: 'Backend',
+        items: ['Mapping manuel ↔ ressources', 'Gestion utilisateurs', 'Tracking usage niveau activité'],
+      },
+      {
+        title: 'Data',
+        items: ['Progression par activité', 'Temps d’utilisation', 'Fréquence'],
+      },
+      {
+        title: 'Analytics',
+        items: ['Tableaux de bord simples', 'Pas d’interprétation clinique'],
+      },
+    ],
+  },
+  {
+    id: 'niveau-donnees',
+    number: '6',
+    title: 'Niveau de données recommandé',
+    lead: 'Le niveau essai reste désactivé par défaut.',
+    table: [
+      { level: 'Activité', usage: 'Formation / suivi', priority: 'prioritaire' },
+      { level: 'Session', usage: 'Engagement', priority: 'standard' },
+      { level: 'Essai', usage: 'Module expert TDDP', priority: 'optionnel' },
+    ],
+  },
+  {
+    id: 'integration-tnd',
+    number: '7',
+    title: 'Intégration TND',
+    lead: 'Le TND intervient comme cadre explicatif et guide pédagogique.',
+    groups: [
+      {
+        title: 'Le TND doit intervenir comme',
+        items: ['Cadre explicatif', 'Guide pédagogique', 'Module expert optionnel, par exemple TDDP'],
+      },
+      {
+        title: 'Mais pas comme',
+        items: ['Système de mesure généralisé', 'Diagnostic automatisé', 'Notation clinique implicite'],
+      },
+    ],
+  },
+  {
+    id: 'role-editeur',
+    number: '8',
+    title: 'Rôle opérationnel de la maison d’édition',
+    lead: 'La plateforme sert l’objet éditorial.',
+    groups: [
+      {
+        title: 'La plateforme doit',
+        items: ['Prolonger le manuel', 'Enrichir les usages', 'Structurer la formation'],
+      },
+      {
+        title: 'Elle ne doit pas',
+        items: ['Remplacer le manuel', 'Déplacer le centre de gravité vers une application isolée'],
+      },
+    ],
+  },
+  {
+    id: 'conditions-reussite',
+    number: '9',
+    title: 'Conditions de réussite',
+    lead: 'La valeur vient de la cohérence entre manuel, formation et usage numérique.',
+    points: [
+      'Ancrage manuel fort',
+      'Formation scénarisée enseignant + parent',
+      'Numérique léger, utile, contextualisé',
+      'TND intégré sans dérive évaluative',
+    ],
+  },
+  {
+    id: 'conclusion',
+    number: '10',
+    title: 'Conclusion',
+    lead:
+      'Le projet devient pertinent et différenciant si l’architecture est réorientée d’une logique application éducative vers un écosystème éditorial-formatif instrumenté.',
+    points: ['Écosystème éditorial', 'Formation contextualisée', 'Manuel enrichi et suivi simple'],
+  },
+]
 
 export const seedUsers = [
   {
@@ -68,27 +266,27 @@ export const seedUsers = [
     createdAt: '2026-01-08T08:30:00.000Z',
   },
   {
-    id: 'user-formateur-math',
+    id: 'user-formateur-fr',
     firstName: 'Ilyas',
-    lastName: 'Math',
+    lastName: 'Français',
     email: 'ilyas@ktoba.ma',
     phone: '+212600000010',
     password: 'teacher123',
     role: 'formateur',
-    subject: 'Math',
-    level: 'Lycée',
+    subject: 'Français',
+    level: 'Collège',
     createdAt: '2026-01-11T10:30:00.000Z',
   },
   {
-    id: 'user-formateur-svt',
+    id: 'user-formateur-tnd',
     firstName: 'Oussama',
-    lastName: 'SVT',
+    lastName: 'TND',
     email: 'oussama@ktoba.ma',
     phone: '+212600000011',
     password: 'teacher123',
     role: 'formateur',
-    subject: 'SVT',
-    level: 'Collège',
+    subject: 'TND',
+    level: 'Formation TND',
     createdAt: '2026-01-15T11:30:00.000Z',
   },
   {
@@ -112,123 +310,370 @@ export const seedUsers = [
     password: 'student123',
     role: 'utilisateur',
     subject: null,
-    level: 'Collège',
+    level: 'Parents',
     createdAt: '2026-02-14T13:30:00.000Z',
   },
 ]
 
 export const seedBooks = [
   {
-    id: 'book-math-1',
-    title: 'Math Premium Terminale',
+    id: 'leclair-francais-petite-section-projet-1',
+    title: "L'éclair du Français - Projet 1 - Petite section",
     description:
-      'Un support clair et visuel pour consolider l’algèbre, l’analyse et les suites, avec exercices guidés et corrigés progressifs pour la préparation bac.',
+      "Livre de français pour la petite section, 3/4 ans, avec activités d'éveil, premières lettres, images, comptines et manipulation orale autour du Projet 1.",
+    imageUrl: '/books/leclair-projet-1.svg',
+    pdfUrl: null,
+    subject: 'Français',
+    level: 'Maternelle',
+    classLevel: 'Petite section',
+    audience: 'Élève',
+    publisher: 'Dar Al Ouma',
+    pages: 32,
+    readAccess: 'all',
+    allowedPages: '',
+    createdBy: 'user-admin',
+    featured: true,
+    isNew: true,
+    createdAt: '2026-04-26T08:00:00.000Z',
+    competencies: ['Écouter', 'Nommer', 'Observer', 'Tracer'],
+    chapters: [
+      {
+        title: 'Découvrir le Projet 1',
+        page: 1,
+        resources: ['Présentation imagée', 'Repérage oral'],
+      },
+      {
+        title: 'Premiers sons et mots',
+        page: 6,
+        resources: ['Comptine courte', 'Jeu de vocabulaire'],
+      },
+      {
+        title: 'Graphisme préparatoire',
+        page: 14,
+        resources: ['Traçage guidé', 'Activité parent'],
+      },
+    ],
+  },
+  {
+    id: 'leclair-francais-petite-section-projet-2',
+    title: "L'éclair du Français - Projet 2 - Petite section",
+    description:
+      "Deuxième projet de la collection L'éclair du Français pour les enfants de 3/4 ans, centré sur l'expression orale, les objets de la classe et les premières associations image-mot.",
+    imageUrl: '/books/leclair-projet-2.svg',
+    pdfUrl: null,
+    subject: 'Français',
+    level: 'Maternelle',
+    classLevel: 'Petite section',
+    audience: 'Élève',
+    publisher: 'Dar Al Ouma',
+    pages: 32,
+    readAccess: 'all',
+    allowedPages: '',
+    createdBy: 'user-admin',
+    featured: true,
+    isNew: true,
+    createdAt: '2026-04-26T08:05:00.000Z',
+    competencies: ['Parler', 'Comprendre', 'Associer', 'Mémoriser'],
+    chapters: [
+      {
+        title: 'Découvrir le Projet 2',
+        page: 1,
+        resources: ['Lecture d’image', 'Vocabulaire de classe'],
+      },
+      {
+        title: 'Je reconnais et je dis',
+        page: 8,
+        resources: ['Cartes mots', 'Rituel oral'],
+      },
+      {
+        title: 'Je prépare mon geste',
+        page: 18,
+        resources: ['Graphisme', 'Activité de consolidation'],
+      },
+    ],
+  },
+  {
+    id: 'leclair-francais-petite-section-projet-3',
+    title: "L'éclair du Français - Projet 3 - Petite section",
+    description:
+      "Troisième projet de français pour la petite section, 3/4 ans, avec des situations de langage, des images à observer et des activités progressives pour enrichir l'expression.",
+    imageUrl: '/books/leclair-projet-3.svg',
+    pdfUrl: null,
+    subject: 'Français',
+    level: 'Maternelle',
+    classLevel: 'Petite section',
+    audience: 'Élève',
+    publisher: 'Dar Al Ouma',
+    pages: 32,
+    readAccess: 'all',
+    allowedPages: '',
+    createdBy: 'user-admin',
+    featured: true,
+    isNew: true,
+    createdAt: '2026-04-26T08:10:00.000Z',
+    competencies: ['Décrire', 'Comparer', 'Raconter', 'Tracer'],
+    chapters: [
+      {
+        title: 'Découvrir le Projet 3',
+        page: 1,
+        resources: ['Observation guidée', 'Expression orale'],
+      },
+      {
+        title: 'Je raconte avec les images',
+        page: 10,
+        resources: ['Séquence images', 'Questionnement enseignant'],
+      },
+      {
+        title: 'Je m’entraîne',
+        page: 20,
+        resources: ['Graphisme', 'Jeu de réinvestissement'],
+      },
+    ],
+  },
+  {
+    id: 'the-time-machine-hg-wells',
+    title: 'The Time Machine - H. G. Wells',
+    description:
+      "Roman de science-fiction de H. G. Wells où un inventeur voyage très loin dans le futur grâce à une machine temporelle. Le lecteur suit son exploration d'un monde transformé et les questions qu'elle ouvre sur le progrès, la société et le temps.",
+    imageUrl: '/books/the-time-machine.svg',
+    pdfUrl: '/books/the-time-machine.pdf',
+    subject: 'Langues',
+    level: 'Collège',
+    classLevel: 'Tous',
+    audience: 'Élève',
+    publisher: 'Dar Al Ouma',
+    pages: 62,
+    readAccess: 'all',
+    allowedPages: '',
+    createdBy: 'user-admin',
+    featured: true,
+    isNew: true,
+    createdAt: '2026-04-26T08:15:00.000Z',
+    competencies: ['Lire', 'Comprendre', 'Analyser', 'Débattre'],
+    chapters: [
+      {
+        title: 'Ouverture du roman',
+        page: 1,
+        resources: ['Présentation de l’auteur', 'Repérage du genre'],
+      },
+      {
+        title: 'La machine et le voyage',
+        page: 8,
+        resources: ['Lexique de science-fiction', 'Compréhension guidée'],
+      },
+      {
+        title: 'Le monde futur',
+        page: 24,
+        resources: ['Questions de lecture', 'Débat en classe'],
+      },
+      {
+        title: 'Retour et interprétation',
+        page: 52,
+        resources: ['Synthèse', 'Production écrite courte'],
+      },
+    ],
+  },
+  {
+    id: 'manuel-francais-5e',
+    title: 'Fleurs d’encre - Français 5e - Manuel instrumenté',
+    description:
+      'Manuel de français organisé par chapitres, compétences et activités, avec capsules enseignants, guides parents et enrichissements numériques associés.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80',
+    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+    subject: 'Français',
+    level: 'Collège',
+    classLevel: '5e',
+    audience: 'Enseignant',
+    publisher: 'Dar Al Ouma',
+    pages: 37,
+    createdBy: 'user-formateur-fr',
+    featured: true,
+    isNew: true,
+    createdAt: '2026-04-22T12:00:00.000Z',
+    competencies: ['Lire', 'Comprendre', 'Écrire', 'Oral'],
+    chapters: [
+      {
+        title: 'Page de titre',
+        page: 1,
+        resources: ['Informations d’accessibilité', 'Guide de prise en main'],
+      },
+      {
+        title: 'Sommaire',
+        page: 3,
+        resources: ['Indexation numérique', 'Repérage par compétence'],
+      },
+      {
+        title: 'Devenir héroïne / héros : destins romanesques',
+        page: 9,
+        resources: ['Capsule phonologie', 'Activité de compréhension guidée'],
+      },
+      {
+        title: 'Voyager en poésie : du monde entier',
+        page: 18,
+        resources: ['Scénario classe', 'Guide parent pour lecture à voix haute'],
+      },
+    ],
+  },
+  {
+    id: 'manuel-maths-cycle4',
+    title: 'Déclic Mathématiques 5e - Manuel accompagné',
+    description:
+      'Progression officielle, exercices gradués et activités numériques reliées au manuel pour un suivi au niveau activité, sans mesure clinique.',
     imageUrl:
       'https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80',
     pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-    subject: 'Math',
-    level: 'Lycée',
-    createdBy: 'user-formateur-math',
-    featured: true,
-    createdAt: '2026-02-16T12:00:00.000Z',
-  },
-  {
-    id: 'book-pc-1',
-    title: 'Physique Chimie Express',
-    description:
-      'Leçons structurées, expériences commentées et fiches de méthode pour maîtriser les lois fondamentales, les schémas et les applications numériques.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
-    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-    subject: 'PC',
-    level: 'Lycée',
+    subject: 'Mathématiques',
+    level: 'Collège',
+    classLevel: '5e',
+    audience: 'Élève',
+    publisher: 'Dar Al Ouma',
+    pages: 64,
     createdBy: 'user-admin',
     featured: true,
-    createdAt: '2026-02-21T09:00:00.000Z',
+    isNew: true,
+    createdAt: '2026-04-20T09:00:00.000Z',
+    competencies: ['Raisonner', 'Calculer', 'Modéliser'],
+    chapters: [
+      {
+        title: 'Nombres et calculs',
+        page: 6,
+        resources: ['Activité interactive', 'Feedback simple'],
+      },
+      {
+        title: 'Grandeurs et mesures',
+        page: 22,
+        resources: ['Capsule enseignant', 'Tableau de progression'],
+      },
+    ],
   },
   {
-    id: 'book-svt-1',
-    title: 'SVT Focus Collège',
+    id: 'lecture-cp-parents',
+    title: 'Pilotis CP - Lecture accompagnée maison',
     description:
-      'Biologie, géologie et écologie dans un format synthétique, avec schémas annotés, mots-clés et mini-évaluations adaptées au cycle collège.',
+      'Un parcours de lecture CP enrichi par des capsules parents pour accompagner l’activité du manuel à la maison.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
+    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+    subject: 'Français',
+    level: 'Élémentaire',
+    classLevel: 'CP',
+    audience: 'Parent',
+    publisher: 'Dar Al Ouma',
+    pages: 48,
+    createdBy: 'user-admin',
+    featured: true,
+    isNew: false,
+    createdAt: '2026-03-28T16:00:00.000Z',
+    competencies: ['Décoder', 'Comprendre', 'Lire à voix haute'],
+    chapters: [
+      {
+        title: 'Entrer dans la lecture',
+        page: 4,
+        resources: ['Capsule parent', 'Routine courte à la maison'],
+      },
+      {
+        title: 'Sons et lettres',
+        page: 12,
+        resources: ['Capsule phonologie', 'Activité numérique légère'],
+      },
+    ],
+  },
+  {
+    id: 'svt-college-numerique',
+    title: 'SVT Collège - Activités numériques contextualisées',
+    description:
+      'Biologie, géologie et écologie dans un manuel enrichi par des activités interactives et un suivi d’engagement simple.',
     imageUrl:
       'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',
     pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-    subject: 'SVT',
+    subject: 'Sciences',
     level: 'Collège',
-    createdBy: 'user-formateur-svt',
-    featured: true,
-    createdAt: '2026-02-23T16:00:00.000Z',
-  },
-  {
-    id: 'book-fr-1',
-    title: 'Français Lecture Active',
-    description:
-      'Analyse de textes, grammaire utile et production écrite dans un guide élégant pensé pour renforcer compréhension, style et méthodologie.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80',
-    pdfUrl: null,
-    subject: 'Français',
-    level: 'Collège',
+    classLevel: '4e',
+    audience: 'Élève',
+    publisher: 'Dar Al Ouma',
+    pages: 72,
     createdBy: 'user-admin',
     featured: false,
-    createdAt: '2026-03-01T10:00:00.000Z',
-  },
-  {
-    id: 'book-eng-1',
-    title: 'English Smart Skills',
-    description:
-      'Vocabulary boosters, reading drills and speaking prompts designed to make English practice more fluent, modern and confidence-building.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80',
-    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-    subject: 'English',
-    level: 'Primaire',
-    createdBy: 'user-admin',
-    featured: false,
-    createdAt: '2026-03-04T08:00:00.000Z',
-  },
-  {
-    id: 'book-ar-1',
-    title: 'العربية في البيت والمدرسة',
-    description:
-      'كتاب متدرج يركز على القراءة والفهم والتراكيب الأساسية مع تمارين مناسبة للأطفال وأولياء الأمور.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80',
-    pdfUrl: null,
-    subject: 'Arabic',
-    level: 'Primaire',
-    createdBy: 'user-admin',
-    featured: false,
-    createdAt: '2026-03-09T14:30:00.000Z',
-  },
-  {
-    id: 'book-math-2',
-    title: 'Révisions Maths Collège',
-    description:
-      'Problèmes corrigés, résumés chapitre par chapitre et astuces rapides pour retrouver les automatismes avant contrôle ou examen.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80',
-    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-    subject: 'Math',
-    level: 'Collège',
-    createdBy: 'user-formateur-math',
-    featured: false,
-    createdAt: '2026-03-12T17:00:00.000Z',
-  },
-  {
-    id: 'book-svt-2',
-    title: 'SVT Bac Mission',
-    description:
-      'Approche bac orientée vers les notions essentielles, les cartes mentales, les schémas et les questions de synthèse à fort rendement.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=1200&q=80',
-    pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
-    subject: 'SVT',
-    level: 'Lycée',
-    createdBy: 'user-formateur-svt',
-    featured: false,
+    isNew: false,
     createdAt: '2026-03-18T12:45:00.000Z',
+    competencies: ['Observer', 'Expliquer', 'Argumenter'],
+    chapters: [
+      {
+        title: 'Le vivant et son évolution',
+        page: 8,
+        resources: ['Activité interactive', 'Synthèse visuelle'],
+      },
+      {
+        title: 'Planète Terre',
+        page: 30,
+        resources: ['Carte annotée', 'Questionnaire de session'],
+      },
+    ],
+  },
+  {
+    id: 'formation-tnd-enseignants',
+    title: 'Formation TND enseignants - Phonologie et attention',
+    description:
+      'Module de formation pour comprendre les besoins TND, adapter les scénarios du manuel et guider les usages sans dérive évaluative.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    pdfUrl: null,
+    subject: 'TND',
+    level: 'Formation TND',
+    classLevel: 'Tous',
+    audience: 'Enseignant',
+    publisher: 'Partenaire numérique',
+    pages: 24,
+    createdBy: 'user-formateur-tnd',
+    featured: false,
+    isNew: true,
+    createdAt: '2026-04-02T10:00:00.000Z',
+    competencies: ['Adapter', 'Observer les usages', 'Scénariser'],
+    chapters: [
+      {
+        title: 'Comprendre la phonologie',
+        page: 2,
+        resources: ['Capsule formation', 'Guide d’adaptation'],
+      },
+      {
+        title: 'Attention et consignes',
+        page: 10,
+        resources: ['Scénario classe', 'Grille non diagnostique'],
+      },
+    ],
+  },
+  {
+    id: 'guide-parents-maison',
+    title: 'Guide parents - Accompagner le manuel à la maison',
+    description:
+      'Capsules courtes et conseils pratiques pour aider un enfant à reprendre une activité du manuel sans transformer la maison en salle de classe.',
+    imageUrl:
+      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
+    pdfUrl: null,
+    subject: 'Pédagogie',
+    level: 'Parents',
+    classLevel: 'Tous',
+    audience: 'Parent',
+    publisher: 'Dar Al Ouma',
+    pages: 18,
+    createdBy: 'user-admin',
+    featured: false,
+    isNew: false,
+    createdAt: '2026-03-09T14:30:00.000Z',
+    competencies: ['Accompagner', 'Encourager', 'Ritualiser'],
+    chapters: [
+      {
+        title: 'Comprendre l’activité',
+        page: 3,
+        resources: ['Capsule explicative', 'Checklist parent'],
+      },
+      {
+        title: 'Feedback simple',
+        page: 11,
+        resources: ['Formulation positive', 'Suivi de fréquence'],
+      },
+    ],
   },
 ]
 
@@ -236,27 +681,28 @@ export const seedRequests = [
   {
     id: 'request-1',
     userId: 'user-student-1',
-    bookId: 'book-math-1',
-    subject: 'Math',
-    message: 'Je souhaite une réunion rapide pour comprendre le programme et la disponibilité.',
+    bookId: 'manuel-maths-cycle4',
+    subject: 'Mathématiques',
+    message:
+      'Je souhaite une réunion rapide pour comprendre le programme et la disponibilité du manuel numérique.',
     status: 'pending',
     createdAt: '2026-04-11T11:30:00.000Z',
   },
   {
     id: 'request-2',
     userId: 'user-parent-1',
-    bookId: 'book-svt-1',
-    subject: 'SVT',
-    message: 'Pouvez-vous confirmer si ce livre est adapté au niveau 3AC ?',
+    bookId: 'lecture-cp-parents',
+    subject: 'Français',
+    message: 'Pouvez-vous confirmer comment utiliser les capsules parents à la maison ?',
     status: 'confirmed',
     createdAt: '2026-04-09T09:15:00.000Z',
   },
   {
     id: 'request-3',
     userId: 'user-student-1',
-    bookId: 'book-fr-1',
-    subject: 'Français',
-    message: 'Je veux réserver une réunion samedi pour voir les options PDF et livraison.',
+    bookId: 'formation-tnd-enseignants',
+    subject: 'TND',
+    message: 'Je veux voir les options TND sans interprétation clinique.',
     status: 'refused',
     createdAt: '2026-04-03T13:00:00.000Z',
   },

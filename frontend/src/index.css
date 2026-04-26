@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 :root {
-  color: #14213d;
-  background: #f7f8fc;
+  color: #0f172a;
+  background: #ffffff;
   font-family: 'Manrope', sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,17 +22,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.9), transparent 35%),
-    linear-gradient(180deg, #f8f9fd 0%, #eef4ff 45%, #fff4e7 100%);
-  color: #10223b;
+  background: #ffffff;
+  color: #0f172a;
 }
 
 body.dark {
-  background:
-    radial-gradient(circle at top, rgba(56, 189, 248, 0.1), transparent 20%),
-    linear-gradient(180deg, #07111f 0%, #081728 45%, #101f2f 100%);
-  color: #edf4ff;
+  background: #020617;
+  color: #f8fafc;
 }
 
 * {
@@ -44,7 +40,7 @@ body.dark {
 }
 
 ::selection {
-  background: rgba(14, 165, 233, 0.25);
+  background: rgba(219, 39, 119, 0.18);
 }
 
 ::-webkit-scrollbar {
@@ -56,19 +52,12 @@ body.dark {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(71, 85, 105, 0.22);
+  background: rgba(100, 116, 139, 0.28);
   border-radius: 999px;
 }
 
 .glass-panel {
-  @apply border border-white/40 bg-white/80 shadow-panel backdrop-blur-xl dark:border-white/10 dark:bg-white/5;
-}
-
-.hero-orb {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(14px);
-  opacity: 0.75;
+  @apply border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-white/5;
 }
 
 .hero-grid {

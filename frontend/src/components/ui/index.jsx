@@ -16,7 +16,7 @@ export function Button({
     secondary:
       'bg-white/80 text-slate-900 ring-1 ring-slate-200 hover:bg-white dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10',
     accent:
-      'bg-gradient-to-r from-sky-500 to-indigo-500 text-white hover:opacity-90',
+      'bg-pink-600 text-white hover:bg-pink-700',
     danger:
       'bg-rose-500 text-white hover:bg-rose-600 dark:hover:bg-rose-500',
     ghost:
@@ -26,7 +26,7 @@ export function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold transition duration-200 focus:outline-none focus:ring-2 focus:ring-sky-400/50 disabled:cursor-not-allowed disabled:opacity-60',
+        'inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold transition duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400/50 disabled:cursor-not-allowed disabled:opacity-60',
         variants[variant],
         className,
       )}
@@ -118,7 +118,7 @@ export function SectionHeading({ eyebrow, title, description, action }) {
     <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div className="space-y-3">
         {eyebrow ? (
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-500">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-pink-600 dark:text-pink-300">
             {eyebrow}
           </p>
         ) : null}
@@ -177,7 +177,7 @@ export function Modal({ open, title, description, children, onClose }) {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="glass-panel w-full max-w-2xl rounded-[32px] p-6"
+            className="glass-panel max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[32px] p-6"
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
