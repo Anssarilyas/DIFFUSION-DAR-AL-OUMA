@@ -3,17 +3,23 @@ import {
   BarChart3,
   BookOpen,
   CheckCircle2,
+  Clock3,
+  ExternalLink,
   GraduationCap,
   HeartHandshake,
   Layers3,
+  MapPin,
   MonitorPlay,
+  Navigation,
+  Phone,
   PlayCircle,
   ShieldCheck,
+  Star,
   Users2,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Badge, Button, SectionHeading } from '../components/ui/index.jsx'
-import { platformSpaces, platformVideos } from '../data/mockData'
+import { libraryLocation, platformSpaces, platformVideos } from '../data/mockData'
 
 const spaceIcons = {
   eleve: BookOpen,
@@ -130,6 +136,92 @@ function PlatformPage() {
               </motion.article>
             )
           })}
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Localisation"
+            title="Librairie Al Oumma"
+            description="Retrouvez la librairie sur la carte, avec les informations pratiques pour la visite."
+          />
+
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <div className="grid lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="relative min-h-[320px] bg-slate-200 dark:bg-slate-900">
+                <iframe
+                  title="Carte Librairie Al Oumma"
+                  src={libraryLocation.embedUrl}
+                  className="absolute inset-0 h-full w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+
+              <div className="bg-white p-6 dark:bg-slate-950">
+                <Badge className="bg-pink-100 text-pink-700 dark:bg-pink-500/15 dark:text-pink-200">
+                  {libraryLocation.category}
+                </Badge>
+                <h2 className="mt-5 font-display text-3xl font-bold text-slate-950 dark:text-white">
+                  {libraryLocation.name}
+                </h2>
+
+                <div className="mt-4 flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-3 py-1 text-amber-700 ring-1 ring-amber-100 dark:bg-amber-500/10 dark:text-amber-200 dark:ring-amber-400/20">
+                    <Star size={15} className="fill-current" />
+                    {libraryLocation.rating}
+                  </span>
+                  <span>({libraryLocation.reviewCount})</span>
+                </div>
+
+                <div className="mt-6 grid gap-4">
+                  <div className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">
+                    <MapPin className="mt-0.5 shrink-0 text-pink-600" size={20} />
+                    <p className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
+                      {libraryLocation.address}
+                    </p>
+                  </div>
+                  <a
+                    href={libraryLocation.phoneHref}
+                    className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-pink-200 hover:bg-pink-50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+                  >
+                    <Phone className="mt-0.5 shrink-0 text-pink-600" size={20} />
+                    <span className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
+                      {libraryLocation.phone}
+                    </span>
+                  </a>
+                  <div className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">
+                    <Clock3 className="mt-0.5 shrink-0 text-pink-600" size={20} />
+                    <p className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
+                      {libraryLocation.status}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a
+                    href={libraryLocation.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="accent" icon={Navigation}>
+                      Itinéraire
+                    </Button>
+                  </a>
+                  <a
+                    href={libraryLocation.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="secondary" icon={ExternalLink}>
+                      Google Maps
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

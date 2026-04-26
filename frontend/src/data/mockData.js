@@ -361,6 +361,20 @@ export const platformVideos = [
   },
 ]
 
+export const libraryLocation = {
+  name: 'Librairie Al Oumma',
+  rating: '4,1',
+  reviewCount: '22',
+  category: 'متجر كتب',
+  address: '15-17 Rue Imam Kastalani, Casablanca',
+  phone: '05 22 31 94 89',
+  phoneHref: 'tel:+212522319489',
+  status: 'Fermé · Ouvre à 08:30 lun',
+  mapUrl: 'https://maps.app.goo.gl/7UW4MveLtxk4t1AQA',
+  embedUrl:
+    'https://www.google.com/maps?q=Librairie%20Al%20Oumma%2015-17%20Rue%20Imam%20Kastalani%20Casablanca&output=embed',
+}
+
 export const seedUsers = [
   {
     id: 'user-admin',
